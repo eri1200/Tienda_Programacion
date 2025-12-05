@@ -7,6 +7,7 @@ package com.tienda.service;
 import com.tienda.domain.Categoria;
 import com.tienda.repository.CategoriaRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,7 @@ public class CategoriaService {
     }
     
     @Transactional(readOnly = true)
-    public Categoria getCategoria(Categoria categoria){ 
-        return categoriaRepository.findById(categoria.getIdCategoria()).orElse(null);
+    public Optional<Categoria> getCategoria(Integer idCategoria){ 
+        return categoriaRepository.findById(idCategoria);
     }
 }

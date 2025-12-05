@@ -27,7 +27,8 @@
         <url/>
     </scm>
     <properties>
-        <java.version>22</java.version>
+        <java.version>17</java.version>
+        <start-class>com.tienda.TiendaApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
