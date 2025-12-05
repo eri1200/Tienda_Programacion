@@ -16,9 +16,11 @@
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>    
         <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+        <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     </head>
     <body>
-        <header th:fragment="header" class="header">
+        <header th:fragment="header" class="header d-print-none">
             <nav class="navbar navbar-expand-sm p-0">
                 <div class="container">                    
                     <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
@@ -29,8 +31,7 @@
                         <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR') or hasRole('ROLE_ADMIN')">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/pruebas/listado}">[[#{plantilla.consultas}]]</a></li> 
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/pruebas/listado2}">Filtros</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/consultas/listado}">[[#{plantilla.consultas}]]</a></li>                                
                             <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                     [[#{plantilla.admin}]]</a>
@@ -77,7 +78,7 @@
                             <li class="nav-item my-auto">
                                 <a class="nav-link">
                                     <img th:src="@{${session.imagenUsuario}}" 
-                                     alt="your image" height="40" class="rounded-circle"/>
+                                         alt="your image" height="40" class="rounded-circle"/>
 
                                     <span sec:authentication="name" class="ms-1"></span>
                                 </a>
@@ -105,7 +106,7 @@
             </section>
         </header>
 
-        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white">
+        <footer th:fragment="footer" class="p-2 mt-5 bg-info text-white d-print-none">
             <p class="lead text-center">[[#{plantilla.derechos}]] &COPY;</p>
         </footer>
 
